@@ -1,0 +1,18 @@
+topic1:
+  name: '/piksi_multi_base_station/navsatfix_rtk_fix'
+  column_names:
+    column_name1: 'lat'
+    column_name2: 'lon'
+  parameters:
+    param1: 'latitude'
+    param2: 'longitude'
+
+
+topic2:
+  name: '/piksi_multi_base_station/enu_pose_best_fix'
+  column_names:
+    column_name1: 'x'
+    column_name2: 'y'
+  parameters:
+    param1: 'pose.pose.position.x'
+    param2: 'pose.pose.position.y'

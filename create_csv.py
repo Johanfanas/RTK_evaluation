@@ -7,9 +7,23 @@ import rostopic
 import rospy
 import argparse
 
+'''
+    Author: Johan Fanas (@Johanfanas)
+
+    This python script reads the config.yaml file and creates
+    a callback for each ROS topic. The data is saved into a 
+    csv file with the column name specified in the yaml file.
+'''
+
 class SUBHANDLER(object):
 
     def __init__(self, config_file, filename):
+
+        '''
+            TODO:
+                Set if statement so it only starts when incoming data
+                ERROR: Topic parameter 'data_class' is not initialized
+        '''
 
         self.filename = filename
 
@@ -56,7 +70,7 @@ class SUBHANDLER(object):
                 csvwriter.writerow(values)
 
 parser = argparse.ArgumentParser(description='ROS to CSV')
-parser.add_argument('--filename', default='output', help='Name of output csv file')
+parser.add_argument('-f', '--filename', default='output', help='Name of output csv file')
 
 args = parser.parse_args()
 

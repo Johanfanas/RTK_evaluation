@@ -11,3 +11,5 @@ Use the create_csv.py script to collect the GPS data from a rosbag by modifying 
 Go to the main function in the plot_csv.py in order to make the appropriate changes for your convinience. Change the csv file, plot numbering, etc. If anyting is done successfully, you should see an output like below:
 
 ![alt text](https://github.com/Johanfanas/RTK_evaluation/blob/main/images/confidence_ellipse.png?raw=true)
+
+![alt text](https://github.com/Johanfanas/RTK_evaluation/blob/main/images/ground_truth_comparison.png?raw=true)

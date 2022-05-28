@@ -26,6 +26,7 @@ def compute_accuracy(df, x, y, name, plot1, plot2, plot_sats):
             - df: pandas dataframe
             - x: string of column name for x axis
             - y: string of column name for y axis
+            - name: Title of plot
             - plot1: plot number for subplot
             - plot2: plot number for subplot
             - plot_sats: boolean. Whether to make the satellite number subplot.

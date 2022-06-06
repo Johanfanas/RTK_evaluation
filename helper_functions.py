@@ -88,7 +88,7 @@ def cep(df, x, y):
     plt.grid()
     plt.show()
 
-def confidence_ellipse(x, y, n_std=[3.0], facecolor='none', **kwargs):
+def confidence_ellipse(x, y, name, ax, n_std=[3.0], facecolor='none', **kwargs):
     """
     Create a plot of the covariance confidence ellipse of `x` and `y`
 
@@ -113,7 +113,6 @@ def confidence_ellipse(x, y, n_std=[3.0], facecolor='none', **kwargs):
     """
 
     # fig, ax = plt.subplots(1, 1, figsize=(9, 3))
-    fig, ax = plt.subplots(1, 1)
 
     if x.size != y.size:
         raise ValueError("x and y must be the same size")
@@ -163,8 +162,10 @@ def confidence_ellipse(x, y, n_std=[3.0], facecolor='none', **kwargs):
     ax.scatter( x, y )
     ax.axvline(x=mean_x, c='k', lw=1)
     ax.axhline(y=mean_y, c='k', lw=1)
+    low, high = ax.get_ylim()
+    ax.set_yticks( np.round( np.arange(low, high, (high-low)/4), 2) )
     ax.set_xlabel('x (m)', fontweight='bold')
     ax.set_ylabel('y (m)', fontweight='bold')
-    ax.set_title("Confidence Ellipse", fontweight='bold')
+    ax.set_title("Confidence Ellipse - " + name, fontweight='bold')
     ax.grid()
     ax.legend(loc='upper left')

@@ -78,7 +78,7 @@ def compute_accuracy(df, x, y, name, plot1, plot2, plot_sats):
     # draw circles of accuracy
     radius = gaccuracy
     cx, cy = create_circle(gaccuracy)
-    plt.plot( cx, cy, color='m', label=str(format(radius*100, '.2f')) + " cm")
+    plt.plot( cx, cy, color='m', label=str(format(radius, '.2f')) + " m")
 
     # plot radius accuracy of specified r1, r2 and r3
 
@@ -123,22 +123,32 @@ def compute_accuracy(df, x, y, name, plot1, plot2, plot_sats):
         plt.legend(loc='upper left')
 
     # plot confidense ellipse for standard deviations
-    confidence_ellipse(df[x], df[y], n_std = [1.0, 2.0, 3.0], linewidth=3)
+    #confidence_ellipse(df[x], df[y], name, axes, n_std = [1.0, 2.0, 3.0], linewidth=3)
 
 def main():
 
     # read csv file
-    df = pd.read_csv('05-17-corrections.csv')
+    df = pd.read_csv('05-17-ncorrections.csv')
+    x = 'x'
+    y = 'y'
 
-    compute_accuracy( df , 'x', 'y', "Corrections", 121, 122, False)
+    # uncomment for confidence ellipse subplot
+    # fig, axs = plt.subplots(3, 1, figsize=(12, 10))
+    # confidence_ellipse(df[x], df[y], "No Corrections", axs[0], n_std = [1.0, 2.0, 3.0], linewidth=3)
+    # df = pd.read_csv('05-17-corrections.csv')
+    # confidence_ellipse(df[x], df[y], "Corrections", axs[1], n_std = [1.0, 2.0, 3.0], linewidth=3)
+    # df = pd.read_csv('05-17-loosely-coupled.csv')
+    # confidence_ellipse(df[x], df[y], "RTK + Loosely Coupled", axs[2], n_std = [1.0, 2.0, 3.0], linewidth=3)
 
-    # compute_accuracy( pd.read_csv('05-17-ncorrections.csv') , 'x', 'y', "Corrections", 121, 122)
-    # compute_accuracy( pd.read_csv('05-17-corrections.csv') , 'x', 'y', "IMU & GPS Fusion", 121, 122)
-    # compute_accuracy( pd.read_csv('05-17-loosely_coupled.csv') , 'y', 'x', "IMU & GPS & Odom Fusion", 121, 122)
+    # uncomment for ground truth comparison
+    plt.figure( figsize=(12, 10) )
+    compute_accuracy( pd.read_csv('05-17-ncorrections.csv') , 'x', 'y', "No Corrections", 311, 322, False)
+    compute_accuracy( pd.read_csv('05-17-corrections.csv') , 'x', 'y', "Corrections", 312, 324, False)
+    compute_accuracy( pd.read_csv('05-17-loosely-coupled.csv') , 'x', 'y', "RTK + Loosely Coupled", 313, 326, False)
 
-    # plt.subplots_adjust(hspace=0.5)
+    plt.subplots_adjust(hspace=0.5)
 
-    plt.tight_layout()
+    # plt.tight_layout()
     plt.show()
 
 try:
